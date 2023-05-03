@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gadolinium", "Gadolinium\Gadolinium.csproj", "{0CC9816E-B2E3-4516-8EA3-77C4DD2EE3E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gadolinium.Test", "Gadolinium.Test\Gadolinium.Test.csproj", "{065BF40D-F983-4D05-AE91-E75CF89DCF04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gadolinium.Test.Monogame", "Gadolinium.Test.Monogame\Gadolinium.Test.Monogame.csproj", "{71AD2585-76CA-4D10-82BE-B039B3A72BF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CC9816E-B2E3-4516-8EA3-77C4DD2EE3E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CC9816E-B2E3-4516-8EA3-77C4DD2EE3E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CC9816E-B2E3-4516-8EA3-77C4DD2EE3E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CC9816E-B2E3-4516-8EA3-77C4DD2EE3E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{065BF40D-F983-4D05-AE91-E75CF89DCF04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{065BF40D-F983-4D05-AE91-E75CF89DCF04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{065BF40D-F983-4D05-AE91-E75CF89DCF04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{065BF40D-F983-4D05-AE91-E75CF89DCF04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71AD2585-76CA-4D10-82BE-B039B3A72BF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71AD2585-76CA-4D10-82BE-B039B3A72BF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71AD2585-76CA-4D10-82BE-B039B3A72BF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71AD2585-76CA-4D10-82BE-B039B3A72BF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

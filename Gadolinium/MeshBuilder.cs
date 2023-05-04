@@ -33,16 +33,18 @@ public static partial class MeshBuilder
         v = Vector3.Normalize(v);
 
         var circle = GetCircle(thetaDiv);
+        
         var n = points.Count;
         var totalNodes = (points.Count - 1) * 2 * thetaDiv;
         var rowNodes = (points.Count - 1) * 2;
+        
         for (var i = 0; i < thetaDiv; i++)
         {
             var w = (v * circle[i].X) + (u * circle[i].Y);
             for (var j = 0; j + 1 < n; j++)
             {
                 var q1 = origin + (direction * points[j].X) + (w * points[j].Y);
-                var q2 = origin + (direction * points[j + 1].X) + (w * points[j].Y);
+                var q2 = origin + (direction * points[j + 1].X) + (w * points[j + 1].Y);
                 var tx = points[j + 1].X - points[j].X;
                 var ty = points[j + 1].Y - points[j].Y;
                 var normal = (-direction * ty) + (w * tx);

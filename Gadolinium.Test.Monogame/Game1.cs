@@ -85,7 +85,7 @@ public class Game1 : Game
         base.Draw(gameTime);
         foreach (var mesh in _meshes)
         {
-            GraphicsDevice.RasterizerState = RasterizerState.CullNone;
+            //GraphicsDevice.RasterizerState = RasterizerState.CullNone;
             GraphicsDevice.SetVertexBuffer(mesh.VertexBuffer);
             GraphicsDevice.Indices = mesh.IndexBuffer;
             _basicEffect = new BasicEffect(GraphicsDevice);

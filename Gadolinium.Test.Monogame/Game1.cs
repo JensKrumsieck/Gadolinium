@@ -46,6 +46,7 @@ public class Game1 : Game
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
+        Window.AllowUserResizing = true;
     }
 
     protected override void Initialize()
@@ -53,11 +54,11 @@ public class Game1 : Game
         // TODO: Add your initialization logic here
 
         base.Initialize();
-        _meshes.Add(new VisualMesh(MeshBuilder.Sphere(Vector3.UnitZ), GraphicsDevice));
-        _meshes.Add(new VisualMesh(MeshBuilder.Box(new Vector3(2f, -1, 1)), GraphicsDevice));
-        _meshes.Add(new VisualMesh(MeshBuilder.Cone(new Vector3(3, 1, 0), new Vector3(3, 4, 0), 1f, true, 32),
+        _meshes.Add(new VisualMesh(Graphics.Primitives.Sphere(Vector3.UnitZ), GraphicsDevice));
+        _meshes.Add(new VisualMesh(Graphics.Primitives.Box(new Vector3(2f, -1, 1)), GraphicsDevice));
+        _meshes.Add(new VisualMesh(Graphics.Primitives.Cone(new Vector3(3, 1, 0), new Vector3(3, 4, 0), 1f, true, 32),
                                    GraphicsDevice));
-        _meshes.Add(new VisualMesh(MeshBuilder.Cylinder(new Vector3(3,-3,0), new Vector3(2,-4,1)), GraphicsDevice));
+        _meshes.Add(new VisualMesh(Graphics.Primitives.Cylinder(new Vector3(3,-3,0), new Vector3(2,-4,1)), GraphicsDevice));
     }
 
     protected override void LoadContent()

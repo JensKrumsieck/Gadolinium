@@ -75,10 +75,15 @@ public sealed class World : IEnumerable<Entity>
             system.Init(this);
     }
 
-    public void ExecuteSystems(float deltaTime = 0)
+    public void ExecuteSystems(float deltaTime )
     {
         foreach (var system in _systems)
             system.Execute(this, deltaTime);
+    }
+    public void ExecuteSystems()
+    {
+        foreach (var system in _systems)
+            system.Execute(this);
     }
 
     private bool HasComponentStorage<T>(out ComponentCache<T>? cache)

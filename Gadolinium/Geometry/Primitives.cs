@@ -2,10 +2,6 @@
 
 namespace Gadolinium.Geometry;
 
-/// <summary>
-/// Create Meshes of Primitives
-/// class internal MeshBuilder Class and contains all overloads
-/// </summary>
 public static class Primitives
 {
     public static Mesh Cube()

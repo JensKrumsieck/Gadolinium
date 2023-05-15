@@ -2,6 +2,6 @@
 
 public struct Entity
 {
-    public int Id;
+    public int Id { get; }
     public Entity(int id) => Id = id;
 }

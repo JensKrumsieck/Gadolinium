@@ -23,6 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Gadolinium.ECS\Gadolinium.ECS.csproj" />
       <ProjectReference Include="..\Gadolinium\Gadolinium.csproj" />
     </ItemGroup>
 

@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using System.Runtime.InteropServices;
 
-namespace Gadolinium;
+namespace Gadolinium.Geometry;
 
 public class Mesh
 {

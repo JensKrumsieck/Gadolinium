@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
+using Gadolinium.Utils;
 
-namespace Gadolinium.Graphics;
+namespace Gadolinium.Geometry;
 
 /// <summary>
 /// Used to Build Meshes
@@ -20,11 +21,12 @@ internal static class MeshBuilder
         m.Add(AddCubeFace(center, -z, y, xLength, yLength, zLength));
         return m;
     }
-    
-    internal static Mesh Ellipsoid(Vector3 center, float radiusX, float radiusY, float radiusZ, int thetaDiv, int phiDiv)
+
+    internal static Mesh Ellipsoid(Vector3 center, float radiusX, float radiusY, float radiusZ, int thetaDiv,
+        int phiDiv)
     {
         var m = new Mesh();
-        var dt = MathHelper.TwoPi / thetaDiv;
+        var dt = MathUtils.TwoPi / thetaDiv;
         var dp = MathF.PI / phiDiv;
         for (var pi = 0; pi <= phiDiv; pi++)
         {
@@ -37,7 +39,7 @@ internal static class MeshBuilder
                 var z = MathF.Cos(phi);
                 var p = new Vector3(center.X + radiusX * x, center.Y + radiusY * y, center.Z + radiusZ * z);
                 var n = new Vector3(x, y, z);
-                var uv = new Vector2(theta / (MathHelper.TwoPi), phi / MathF.PI);
+                var uv = new Vector2(theta / (MathUtils.TwoPi), phi / MathF.PI);
                 m.AddVertex(p, n, uv);
             }
         }
@@ -58,7 +60,7 @@ internal static class MeshBuilder
 
                 if (i < rows - 2)
                 {
-                    m.AddIndex(ij+cols);
+                    m.AddIndex(ij + cols);
                     m.AddIndex(ij);
                     m.AddIndex(ij + cols + 1);
                 }
@@ -67,9 +69,9 @@ internal static class MeshBuilder
 
         return m;
     }
-    
+
     internal static Mesh Cone(Vector3 origin, Vector3 direction, float baseRadius, float topRadius, float height,
-                            bool baseCap, bool topCap, int thetaDiv)
+        bool baseCap, bool topCap, int thetaDiv)
     {
         var points = new List<Vector2>();
         var textureValues = new List<float>();
@@ -78,6 +80,7 @@ internal static class MeshBuilder
             points.Add(Vector2.Zero);
             textureValues.Add(0);
         }
+
         points.Add(Vector2.UnitY * baseRadius);
         textureValues.Add(1);
         points.Add(new Vector2(height, topRadius));
@@ -106,31 +109,31 @@ internal static class MeshBuilder
         m.AddVertex(p2, normal, Vector2.UnitY);
         m.AddVertex(p3, normal, Vector2.Zero);
         m.AddVertex(p4, normal, Vector2.UnitX);
-        
+
         m.AddIndex(2);
         m.AddIndex(1);
         m.AddIndex(0);
-        
+
         m.AddIndex(0);
         m.AddIndex(3);
         m.AddIndex(2);
         return m;
     }
-    
+
     private static IList<Vector2> GetCircle(int numberOfSegments, bool isClosed = false)
     {
         var circlePoints = new List<Vector2>();
         var numberOfPoints = isClosed ? numberOfSegments : numberOfSegments - 1;
         for (var i = 0; i < numberOfSegments; i++)
         {
-            var theta = MathHelper.TwoPi * (i / (float) numberOfPoints);
+            var theta = MathUtils.TwoPi * (i / (float) numberOfPoints);
             circlePoints.Add(new Vector2(MathF.Cos(theta), -MathF.Sin(theta)));
         }
 
         return circlePoints;
     }
     private static Mesh Revolve(IList<Vector2> points, IList<float> textureValues, Vector3 origin, Vector3 direction,
-                                int thetaDiv)
+        int thetaDiv)
     {
         var m = new Mesh();
         direction = Vector3.Normalize(direction);
@@ -140,11 +143,11 @@ internal static class MeshBuilder
         v = Vector3.Normalize(v);
 
         var circle = GetCircle(thetaDiv);
-        
+
         var n = points.Count;
         var totalNodes = (points.Count - 1) * 2 * thetaDiv;
         var rowNodes = (points.Count - 1) * 2;
-        
+
         for (var i = 0; i < thetaDiv; i++)
         {
             var w = (v * circle[i].X) + (u * circle[i].Y);
@@ -157,14 +160,14 @@ internal static class MeshBuilder
                 var normal = (-direction * ty) + (w * tx);
                 var tv1 = new Vector2(i / (thetaDiv - 1f), textureValues == null ? j / (n - 1f) : textureValues[j]);
                 var tv2 = new Vector2(i / (thetaDiv - 1f),
-                                      textureValues == null ? (j + 1f) / (n - 1f) : textureValues[j + 1]);
+                    textureValues == null ? (j + 1f) / (n - 1f) : textureValues[j + 1]);
                 m.AddVertex(q1, normal, tv1);
                 m.AddVertex(q2, normal, tv2);
                 var i0 = (i * rowNodes) + (j * 2);
                 var i1 = i0 + 1;
                 var i2 = ((((i + 1) * rowNodes) + (j * 2)) % totalNodes);
                 var i3 = i2 + 1;
-                
+
                 m.AddIndex(i2);
                 m.AddIndex(i0);
                 m.AddIndex(i1);

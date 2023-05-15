@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Gadolinium.Geometry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -19,7 +20,7 @@ internal class VisualMesh
         Mesh = mesh;
         _vertexBuffer =
             new VertexBuffer(device, VertexPositionNormalTexture.VertexDeclaration,
-                             mesh.Vertices.Length, BufferUsage.WriteOnly);
+                mesh.Vertices.Length, BufferUsage.WriteOnly);
 
 
         var verts = new List<VertexPositionNormalTexture>();
@@ -31,7 +32,6 @@ internal class VisualMesh
         _indexBuffer.SetData(mesh.Indices.ToArray());
     }
 }
-
 public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
@@ -54,11 +54,11 @@ public class Game1 : Game
         // TODO: Add your initialization logic here
 
         base.Initialize();
-        _meshes.Add(new VisualMesh(Graphics.Primitives.Sphere(Vector3.UnitZ), GraphicsDevice));
-        _meshes.Add(new VisualMesh(Graphics.Primitives.Box(new Vector3(2f, -1, 1)), GraphicsDevice));
-        _meshes.Add(new VisualMesh(Graphics.Primitives.Cone(new Vector3(3, 1, 0), new Vector3(3, 4, 0), 1f, true, 32),
-                                   GraphicsDevice));
-        _meshes.Add(new VisualMesh(Graphics.Primitives.Cylinder(new Vector3(3,-3,0), new Vector3(2,-4,1)), GraphicsDevice));
+        _meshes.Add(new VisualMesh(Primitives.Sphere(Vector3.UnitZ), GraphicsDevice));
+        _meshes.Add(new VisualMesh(Primitives.Box(new Vector3(2f, -1, 1)), GraphicsDevice));
+        _meshes.Add(new VisualMesh(Primitives.Cone(new Vector3(3, 1, 0), new Vector3(3, 4, 0), 1f, true, 32),
+            GraphicsDevice));
+        _meshes.Add(new VisualMesh(Primitives.Cylinder(new Vector3(3, -3, 0), new Vector3(2, -4, 1)), GraphicsDevice));
     }
 
     protected override void LoadContent()
@@ -95,8 +95,8 @@ public class Game1 : Game
             _basicEffect.View =
                 Matrix.CreateLookAt(_cameraPosition, Vector3.Zero, Microsoft.Xna.Framework.Vector3.Up);
             _basicEffect.Projection =
-                Matrix.CreatePerspectiveFieldOfView(Microsoft.Xna.Framework.MathHelper.ToRadians(90),
-                                                    GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000f);
+                Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(90),
+                    GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000f);
 
             foreach (var pass in _basicEffect.CurrentTechnique.Passes)
             {

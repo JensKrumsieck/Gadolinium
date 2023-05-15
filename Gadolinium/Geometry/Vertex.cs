@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Gadolinium;
+namespace Gadolinium.Geometry;
 
 public struct Vertex
 {

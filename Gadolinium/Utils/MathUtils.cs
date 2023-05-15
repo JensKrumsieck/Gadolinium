@@ -1,8 +1,8 @@
 ﻿using System.Numerics;
 
-namespace Gadolinium;
+namespace Gadolinium.Utils;
 
-public static class MathHelper
+public static class MathUtils
 {
     public const float TwoPi = MathF.PI * 2f;
     public const float PiOver2 = MathF.PI / 2f;
@@ -14,15 +14,6 @@ public static class MathHelper
         if (u.LengthSquared() < 1e-3) u = Vector3.Cross(Vector3.UnitX, v);
         return u;
     }
-
-    /// <summary>
-    /// Restricts a value to be within range [min,max]
-    /// </summary>
-    /// <param name="value"></param>
-    /// <param name="min"></param>
-    /// <param name="max"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
     public static T Clamp<T>(T value, T min, T max) where T : INumber<T>
     {
         value = (value > max) ? max : value;
@@ -30,13 +21,5 @@ public static class MathHelper
         return value;
     }
 
-    /// <summary>
-    /// Linerar Interpolates between two values
-    /// </summary>
-    /// <param name="value1"></param>
-    /// <param name="value2"></param>
-    /// <param name="amount"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
     public static T Lerp<T>(T value1, T value2, T amount) where T : INumber<T> => value1 + (value2 - value1) * amount;
 }

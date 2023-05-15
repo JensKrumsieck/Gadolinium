@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 using FluentAssertions;
-using Gadolinium.Graphics;
+using Gadolinium.Geometry;
 
 namespace Gadolinium.Test;
 
@@ -12,7 +12,7 @@ public class MeshTests
         var m = new Mesh();
         m.Should().BeOfType<Mesh>();
     }
-    
+
     [Fact]
     public void Meshes_Can_Be_Added()
     {

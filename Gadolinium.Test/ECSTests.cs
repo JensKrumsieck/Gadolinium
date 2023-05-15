@@ -1,6 +1,5 @@
-﻿using System.Runtime.InteropServices;
-using FluentAssertions;
-using Gadolinium.ECS;
+﻿using FluentAssertions;
+using Gadolinium.Scene;
 
 namespace Gadolinium.Test;
 
@@ -13,10 +12,9 @@ public class ECSTests
 
     private class TestSystem : BaseSystem<TestComponent>
     {
-        public TestSystem(World w) : base(w) { }
-        public override void Execute(float deltaTime)
+        public override void Execute(World w, float deltaTime = 0)
         {
-            var components = World.GetComponents<TestComponent>();
+            var components = w.GetComponents<TestComponent>();
             for (var i = 0; i < components.Length; i++)
             {
                 components[i].Number *= 2;
@@ -38,10 +36,9 @@ public class ECSTests
     {
         var w = new World();
         var e = w.CreateEntity();
-        var tc = new TestComponent {Number = 1};
-        w.AddComponent(e, tc);
+        w.AddComponent<TestComponent>(e);
         w.GetComponents<TestComponent>().Length.Should().Be(1);
-        w.GetComponent<TestComponent>(e).Number.Should().Be(1);
+        w.GetComponent<TestComponent>(e).Number.Should().Be(0);
     }
 
     [Fact]
@@ -57,8 +54,9 @@ public class ECSTests
     {
         var w = new World();
         var e = w.CreateEntity();
-        var result = w.TryGetComponent<TestComponent>(e, out _);
+        var result = w.TryGetComponent<TestComponent>(e, out var component);
         result.Should().BeFalse();
+        component.Should().BeNull();
     }
 
     [Fact]
@@ -66,7 +64,7 @@ public class ECSTests
     {
         var w = new World();
         var e = w.CreateEntity();
-        var tc = new TestComponent {Number = 1}; 
+        var tc = new TestComponent {Number = 1};
         w.AddComponent(e, tc);
         ref var compo = ref w.GetComponent<TestComponent>(e);
         compo.Number = 2;
@@ -78,7 +76,7 @@ public class ECSTests
     {
         var w = new World();
         var e = w.CreateEntity();
-        var tc = new TestComponent {Number = 1}; 
+        var tc = new TestComponent {Number = 1};
         w.AddComponent(e, tc);
         w.GetComponents<TestComponent>().Length.Should().Be(1);
         w.RemoveComponent<TestComponent>(e);
@@ -90,7 +88,7 @@ public class ECSTests
     {
         var w = new World();
         var e = w.CreateEntity();
-        var tc1 = new TestComponent {Number = 1}; 
+        var tc1 = new TestComponent {Number = 1};
         var tc2 = new TestComponent {Number = 2};
         w.AddComponent(e, tc1);
         Assert.Throws<ArgumentException>(() => w.AddComponent(e, tc2));
@@ -101,10 +99,10 @@ public class ECSTests
     {
         var w = new World();
         var e = w.CreateEntity();
-        var tc1 = new TestComponent {Number = 1}; 
+        var tc1 = new TestComponent {Number = 1};
         w.AddComponent(e, tc1);
         w.GetComponents<TestComponent>().Length.Should().Be(1);
-        w.DespawnEntity(e);
+        w.DestroyEntity(e);
         w.GetComponents<TestComponent>().Length.Should().Be(0);
     }
 
@@ -117,6 +115,7 @@ public class ECSTests
             var e = w.CreateEntity();
             w.AddComponent(e, new TestComponent {Number = new Random().Next(0, 1000)});
         }
+
         w.GetComponents<TestComponent>().Length.Should().Be(10000);
     }
 
@@ -125,9 +124,9 @@ public class ECSTests
     {
         var w = new World();
         var e = w.CreateEntity();
-        w.AddComponent(e, new TestComponent {Number = 1});
-        var sys = new TestSystem(w);
-        sys.Execute(0);
+        w.AddSystem<TestSystem>().AddComponent(e, new TestComponent {Number = 1});
+        w.InitializeSystems();
+        w.ExecuteSystems();
         w.GetComponent<TestComponent>(e).Number.Should().Be(2);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Gadolinium.ECS;
+﻿namespace Gadolinium.Scene;
 
 public struct Entity
 {

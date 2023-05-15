@@ -1,6 +1,6 @@
 using System.Numerics;
 using FluentAssertions;
-using Gadolinium.Graphics;
+using Gadolinium.Geometry;
 
 namespace Gadolinium.Test;
 
@@ -12,19 +12,19 @@ public class PrimitiveTests
         const int thetaDiv = 30;
         const int points = 2;
         const int vertexCount = thetaDiv * 2 * (points - 1);
-        
+
         var m = Primitives.Cone(Vector3.UnitX, Vector3.UnitZ, 1f, 0f, 1f, false, false, thetaDiv);
         m.Indices.Length.Should().Be(vertexCount * 3);
         m.Vertices.Length.Should().Be(vertexCount);
     }
-    
+
     [Fact]
     public void Cone_Can_Be_Created_WithCaps()
     {
         const int thetaDiv = 30;
         const int points = 4;
         const int vertexCount = thetaDiv * 2 * (points - 1);
-        
+
         var m = Primitives.Cone(Vector3.UnitX, Vector3.UnitZ, 1f, 0f, 1f, true, true, thetaDiv);
         m.Indices.Length.Should().Be(vertexCount * 3);
         m.Vertices.Length.Should().Be(vertexCount);
@@ -55,7 +55,7 @@ public class PrimitiveTests
         m.Vertices.Length.Should().Be(vertexCount);
         m.Indices.Length.Should().Be(indexCount);
     }
-    
+
     [Fact]
     public void Sphere_Can_Be_Created()
     {

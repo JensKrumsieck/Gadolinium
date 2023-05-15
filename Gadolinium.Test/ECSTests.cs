@@ -10,7 +10,7 @@ public class ECSTests
         public required int Number;
     }
 
-    private class TestSystem : BaseSystem<TestComponent>
+    private class TestSystem : BaseSystem
     {
         public override void Execute(World w, float deltaTime = 0)
         {

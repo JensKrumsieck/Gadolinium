@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gadolinium.Test", "Gadolini
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gadolinium.Test.Monogame", "Gadolinium.Test.Monogame\Gadolinium.Test.Monogame.csproj", "{71AD2585-76CA-4D10-82BE-B039B3A72BF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gadolinium.Monogame", "Gadolinium.Monogame\Gadolinium.Monogame.csproj", "{9F32AF3C-1438-432F-AC2C-005F67BE67BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{71AD2585-76CA-4D10-82BE-B039B3A72BF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71AD2585-76CA-4D10-82BE-B039B3A72BF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71AD2585-76CA-4D10-82BE-B039B3A72BF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F32AF3C-1438-432F-AC2C-005F67BE67BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F32AF3C-1438-432F-AC2C-005F67BE67BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F32AF3C-1438-432F-AC2C-005F67BE67BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F32AF3C-1438-432F-AC2C-005F67BE67BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

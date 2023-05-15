@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Gadolinium.Geometry;
+using Gadolinium.Monogame.Geometry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -7,31 +8,6 @@ using Vector3 = System.Numerics.Vector3;
 
 namespace Gadolinium.Test.Monogame;
 
-internal class VisualMesh
-{
-    public readonly Mesh Mesh;
-    private readonly VertexBuffer _vertexBuffer;
-    private readonly IndexBuffer _indexBuffer;
-    public VertexBuffer VertexBuffer => _vertexBuffer;
-    public IndexBuffer IndexBuffer => _indexBuffer;
-
-    public VisualMesh(Mesh mesh, GraphicsDevice device)
-    {
-        Mesh = mesh;
-        _vertexBuffer =
-            new VertexBuffer(device, VertexPositionNormalTexture.VertexDeclaration,
-                mesh.Vertices.Length, BufferUsage.WriteOnly);
-
-
-        var verts = new List<VertexPositionNormalTexture>();
-        foreach (var vert in mesh.Vertices)
-            verts.Add(new VertexPositionNormalTexture(vert.Position, vert.Normal, vert.TextureCoordinate));
-        _vertexBuffer.SetData(verts.ToArray());
-        _indexBuffer =
-            new IndexBuffer(device, typeof(ushort), mesh.Indices.Length, BufferUsage.WriteOnly);
-        _indexBuffer.SetData(mesh.Indices.ToArray());
-    }
-}
 public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;

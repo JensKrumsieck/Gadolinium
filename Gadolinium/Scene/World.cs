@@ -80,10 +80,10 @@ public sealed class World : IEnumerable<Entity>
         foreach (var system in _systems)
             system.Execute(this, deltaTime);
     }
-    public void ExecuteSystems()
+    public void DrawSystems()
     {
         foreach (var system in _systems)
-            system.Execute(this);
+            system.Draw(this);
     }
 
     private bool HasComponentStorage<T>(out ComponentCache<T>? cache)

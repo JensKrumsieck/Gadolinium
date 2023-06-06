@@ -4,5 +4,5 @@ public interface ISystem
 {
     void Init(World w);
     void Execute(World w, float deltaTime);
-    void Execute(World w);
+    void Draw(World w);
 }

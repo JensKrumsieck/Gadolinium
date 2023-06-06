@@ -126,7 +126,7 @@ public class ECSTests
         var e = w.CreateEntity();
         w.AddSystem<TestSystem>().AddComponent(e, new TestComponent {Number = 1});
         w.InitializeSystems();
-        w.ExecuteSystems();
+        w.DrawSystems();
         w.GetComponent<TestComponent>(e).Number.Should().Be(2);
     }
 }

@@ -30,9 +30,9 @@ public class Game1 : Game
         _world.AddComponent(camera, new TransformComponent {Position = new Vector3(0, -1, -5)});
         _world.AddComponent(camera, new CameraComponent
         {
-            AspectRatio = _graphics.GraphicsDevice.Viewport.AspectRatio
+            AspectRatio = GraphicsDevice.Viewport.AspectRatio
         });
-        Window.ClientSizeChanged += (_, _) => _world.GetComponent<CameraComponent>(camera).AspectRatio = _graphics.GraphicsDevice.Viewport.AspectRatio;
+        Window.ClientSizeChanged += (_, _) => _world.GetComponent<CameraComponent>(camera).AspectRatio = GraphicsDevice.Viewport.AspectRatio;
         _world.AddComponent(
                             _world.CreateEntity(),
                             new MeshComponent(new VisualMesh(Primitives.Sphere(Vector3.UnitZ), GraphicsDevice)
